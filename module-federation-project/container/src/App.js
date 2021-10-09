@@ -11,6 +11,7 @@ import ProgressBar from "./components/ProgressBar";
 // Lazy Imports
 const AuthApp = lazy(() => import("./components/AuthApp"));
 const MarketingApp = lazy(() => import("./components/MarketingApp"));
+const DashboardApp = lazy(() => import("./components/DashboardApp"));
 
 const generateClassName = createGenerateClassName({
   productionPrefix: "container",
@@ -39,6 +40,7 @@ const App = () => {
             <Route path="/auth">
               <AuthApp onAuthChange={onAuthChange} />
             </Route>
+            <Route path="/dashboard" component={DashboardApp} />
             <Route path="/" component={MarketingApp} />
           </Switch>
         </Suspense>

@@ -81,6 +81,19 @@ export default function Header({ user, logout }) {
           >
             App
           </Typography>
+
+          {user && (
+            <Typography
+              noWrap
+              variant="h6"
+              color="inherit"
+              component={RouterLink}
+              to="/dashboard"
+            >
+              Dashboard
+            </Typography>
+          )}
+
           <Button
             color="primary"
             variant="outlined"
