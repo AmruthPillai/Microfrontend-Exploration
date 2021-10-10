@@ -1,5 +1,6 @@
-import React, { lazy, Suspense, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import {
   StylesProvider,
   createGenerateClassName,
@@ -17,6 +18,8 @@ const generateClassName = createGenerateClassName({
   productionPrefix: "container",
 });
 
+const history = createBrowserHistory();
+
 const App = () => {
   const [user, setUser] = useState(null);
 
@@ -30,9 +33,15 @@ const App = () => {
     });
   };
 
+  useEffect(() => {
+    if (user) {
+      history.push("/dashboard");
+    }
+  }, [user]);
+
   return (
     <StylesProvider generateClassName={generateClassName}>
-      <BrowserRouter>
+      <Router history={history}>
         <Header user={user} logout={logout} />
 
         <Suspense fallback={<ProgressBar />}>
@@ -40,11 +49,14 @@ const App = () => {
             <Route path="/auth">
               <AuthApp onAuthChange={onAuthChange} />
             </Route>
-            <Route path="/dashboard" component={DashboardApp} />
+            <Route path="/dashboard">
+              {!user && <Redirect to="/" />}
+              <DashboardApp />
+            </Route>
             <Route path="/" component={MarketingApp} />
           </Switch>
         </Suspense>
-      </BrowserRouter>
+      </Router>
     </StylesProvider>
   );
 };

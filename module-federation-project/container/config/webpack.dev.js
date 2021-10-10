@@ -12,17 +12,14 @@ const devConfig = {
   devServer: {
     port: 8080,
     historyApiFallback: true,
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-    },
   },
   plugins: [
     new ModuleFederationPlugin({
       name: "container",
       shared: packageJSON.dependencies,
       remotes: {
-        auth: "auth@http://localhost:8082/remoteEntry.js",
         marketing: "marketing@http://localhost:8081/remoteEntry.js",
+        auth: "auth@http://localhost:8082/remoteEntry.js",
         dashboard: "dashboard@http://localhost:8083/remoteEntry.js",
       },
     }),

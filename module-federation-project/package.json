@@ -1,0 +1,24 @@
+{
+  "name": "module-federation-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:auth": "cd auth && npm start",
+    "start:container": "cd container && npm run start",
+    "start:marketing": "cd marketing && npm run start",
+    "start:dashboard": "cd dashboard && npm run start",
+    "start": "concurrently --kill-others \"npm run start:auth\" \"npm run start:container\" \"npm run start:marketing\" \"npm run start:dashboard\"",
+    "build:auth": "cd auth && npm run build",
+    "build:container": "cd container && npm run build",
+    "build:marketing": "cd marketing && npm run build",
+    "build:dashboard": "cd dashboard && npm run build",
+    "build": "concurrently \"npm run build:auth\" \"npm run build:container\" \"npm run build:marketing\" \"npm run build:dashboard\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^6.3.0"
+  }
+}

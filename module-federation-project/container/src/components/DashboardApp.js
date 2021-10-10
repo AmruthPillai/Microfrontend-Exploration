@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { mount } from "dashboard/DashboardApp";
+import { useHistory } from "react-router-dom";
 
 const DashboardApp = () => {
   const ref = useRef(null);

@@ -1,25 +1,15 @@
 import React from "react";
-import { Switch, Route, Router } from "react-router-dom";
-import {
-  StylesProvider,
-  createGenerateClassName,
-} from "@material-ui/core/styles";
+import { Router, Switch, Route } from "react-router-dom";
 
-import Dashboard from "./components/Dashboard";
-
-const generateClassName = createGenerateClassName({
-  productionPrefix: "dashboard",
-});
+import WelcomePage from "./components/WelcomePage";
 
 const App = ({ history }) => {
   return (
-    <StylesProvider generateClassName={generateClassName}>
-      <Router history={history}>
-        <Switch>
-          <Route path="/dashboard" component={Dashboard} />
-        </Switch>
-      </Router>
-    </StylesProvider>
+    <Router history={history}>
+      <Switch>
+        <Route path="/dashboard" component={WelcomePage} />
+      </Switch>
+    </Router>
   );
 };
 
